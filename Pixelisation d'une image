@@ -1,0 +1,37 @@
+Pixellisation d’une image
+
+La pixellisation est souvent utilisée pour flouter une image, en partie ou dans sa totalité. La zone pixelisée
+fait apparaître des blocs carrés contenant n×n pixels de couleur uniforme. On observe la même chose en agrandissant une image 
+jusqu’au niveau du pixel, sauf que là, chaque carré représente 1 pixel.
+
+Pour arriver à ce résultat, le principe de l’algorithme est donc de diviser l’image en blocs carrés de largeur n  pixels. 
+Les composantes R, V, et B de chacun des n2 pixels d’un bloc sont remplacés par leur moyenne (une moyenne de n2 valeurs par composante).
+La largeur L et la hauteur H de l’image initiale doivent être divisibles par n (pour éviter les effets de bords,
+à moins de faire des traitements spécifiques sur les bords). 
+
+On parcourt cette image non pas pixel par pixel mais par blocs de n×n pixels. 
+Il y en a L/n en largeur et H/n en hauteur:
+
+for b in range(H//n):
+#  // correspond à la division entière en Python
+for a in range(L//n):
+............
+
+Pour le calcul des moyennes des composantes R, V, et B, on peut utiliser 3 variables moyR, moyV, et moyB,
+qu’on initialise à 0 avant ces deux boucles. On calcule la somme au fur et à mesure, et à la fin des deux boucles, 
+on divise par n×n pour obtenir la moyenne (puisqu’il y a n2 pixels par bloc), avant d’arrondir à l’entier le plus proche.
+Rappel :
+ les pixels sont numérotés à partir de 0 en largeur comme en hauteur. En Python, dans une boucle 
+ « for p in range(q): » p prend successivement toutes les valeur entières de 0 à q-1 soit q valeurs.
+ 
+(voir image *)
+Traitement d’un premier bloc 2x2 (en vert): on prend la moyenne des valeurs: (172 + 127 + 134 + 85 )/4 =  130
+On donne cette valeur aux 4 pixels de l’image initiale. 
+On passe ensuite au second bloc (en rouge) et on opère de même.
+Les 4 pixels du bloc rouge prennent la valeur de la moyenne (86).
+De même pour les blocs bleus et jaunes (dont les pixels prennent respectivement la valeur 95 et 47).
+On obtient ainsi la nouvelle image ci-contre*.
+
+*ref: images page 9/10
+
+http://cache.media.eduscol.education.fr/file/ISN_Tle_S/27/1/lyceeGT_ressource_ISN_20_06_Tle_S_22_Traitement_images_2_218271.pdf
