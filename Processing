@@ -1,0 +1,94 @@
+PImage img; 
+PImage img1; 
+PImage img2; 
+PImage img3; 
+PImage img4;
+PImage img5; 
+PImage img6;
+int cellsize = 15; 
+int cols, rows;   
+
+
+void setup() {
+  size(587, 814); 
+  img  = loadImage("image_cp_base.png"); 
+  img1  = loadImage("image_cp_red.png"); 
+  img2  = loadImage("image_cp_white.png"); 
+  img3  = loadImage("image_cp_bleu.png"); 
+  img4  = loadImage("image_cp_yellow.png"); 
+  img5  = loadImage("image_cp_black.png"); 
+  img6  = loadImage("image_cp_text.png"); 
+  
+  cols = width/cellsize;             
+  rows = height/cellsize;            
+}
+
+void draw() {
+  background(0);
+ 
+  loadPixels();
+  //colorMode(RGB);
+
+  for ( int i = 0; i < cols;i++) {
+     for ( int j = 0; j < rows;j++) {
+      int x = i*cellsize; 
+      int y = j*cellsize; 
+      int loc = x + y*width;           
+      color a = img.pixels[loc];   
+      color b = img1.pixels[loc];
+      color c = img2.pixels[loc];
+      color d = img3.pixels[loc];
+      color e = img4.pixels[loc];
+      color f = img5.pixels[loc];
+      color g = img6.pixels[loc];
+            
+      pushMatrix();
+      translate(x,y);
+      fill(a);
+      stroke(0,8);
+      rect(0,0,cellsize,cellsize);
+      popMatrix();
+      
+      
+       if (keyPressed) {
+          
+        if (key == '0' || key == '0') {
+         background(img); //image de base
+        }
+        
+        if (key == '1' || key == '1') {
+         fill(b); // rouge
+         
+        }
+          
+        if (key == '2' || key == '2') {
+         fill(c); //bisque
+        }
+        
+        if (key == '3' || key == '3') {
+         fill(d); //hotpink
+        }
+        
+        if (key == '4' || key == '4') {
+         fill(e); //rouge
+        }
+        
+        if (key == '5' || key == '5') {
+         fill(f);
+        }
+        
+         if (key == '6' || key == '6') {
+         fill(g);
+        }
+                      
+      } else {
+        
+    fill(a);
+    
+    }
+    
+    rect(x, y, cellsize, cellsize);
+    
+   }
+  }
+ }
